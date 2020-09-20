@@ -8,7 +8,6 @@ class Signup extends Component {
         username: '',
         email: '',
         password: '',
-        password_confirmation: '',
         errors: ''
         };
     }
@@ -21,15 +20,14 @@ class Signup extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault()
-        const {username, email, password, password_confirmation} = this.state
+        const {name, email, password} = this.state
         let user = {
-        username: username,
+        name: name,
         email: email,
-        password: password,
-        password_confirmation: password_confirmation
+        password: password
         }
     
-        axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+        axios.post('http://localhost:3001/api/v1/users', {user}, {withCredentials: true})
         .then(response => {
         if (response.data.status === 'created') {
             this.props.handleLogin(response.data)
@@ -59,7 +57,7 @@ class Signup extends Component {
     }
 
     render() {
-        const {username, email, password, password_confirmation} = this.state
+        const {name, email, password} = this.state
         
         return (
             <div>
@@ -68,8 +66,8 @@ class Signup extends Component {
                 <input
                     placeholder="username"
                     type="text"
-                    name="username"
-                    value={username}
+                    name="name"
+                    value={name}
                     onChange={this.handleChange}
                 />
                 <input
@@ -86,14 +84,6 @@ class Signup extends Component {
                     value={password}
                     onChange={this.handleChange}
                 />
-                <input
-                    placeholder="password confirmation"
-                    type="password"
-                    name="password_confirmation"
-                    value={password_confirmation}
-                    onChange={this.handleChange}
-                />
-                
                 <button placeholder="submit" type="submit">
                     Sign Up
                 </button>
