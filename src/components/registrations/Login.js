@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
 class Login extends Component {
     
@@ -24,29 +25,32 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const {name, email, password} = this.state
+
+        this.props.dispatch({type: 'ADD_USER', user: this.state})
     
         let user = {
         name: name,
         email: email,
         password: password
-    }
-        
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
-        .then(response => {
-        if (response.data.logged_in) {
-            this.props.handleLogin(response.data)
-            this.redirect()
-        } else {
-            this.setState({
-            errors: response.data.errors
-            })
         }
-        })
-        .catch(error => console.log('api errors:', error))
+        
+        axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+            .then(response => {
+            if (response.data.logged_in) {
+                this.props.handleLogin(response.data)
+                this.redirect()
+            } else {
+                this.setState({
+                errors: response.data.errors
+                })
+            }
+            })
+            .catch(error => console.log('api errors:', error))
+        debugger   
     };
 
     redirect = () => {
-        this.props.history.push('/')
+        this.props.history.push('/profile')
     }
 
     handleErrors = () => {
@@ -105,4 +109,8 @@ class Login extends Component {
         );
     }
 }
-export default Login;
+
+
+
+export default connect()(Login);
+

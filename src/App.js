@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
+// import { routerActions } from 'react-router-redux';
+
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
-import UserProfile from './components/UserProfile'
+import UserProfile from './containers/UserProfile'
 
 class App extends Component {
   constructor(props) {
@@ -70,10 +73,8 @@ class App extends Component {
                 )}
               />
               <Route
-                exact path='/user/:userId'
-                render={props => (
-                  <UserProfile />
-                )}
+                path= "/profile"
+                component={UserProfile}
               />
             </Switch>
           </BrowserRouter>
@@ -82,3 +83,9 @@ class App extends Component {
     }
 }
 export default App;
+
+// const userIsAuthenticated = connectedRouterRedirect({
+//   redirectPath: '/login',
+//   authenticatedSelector: state => state.user.data !== null,
+//   wrapperDisplayName: 'UserIsAuthenticated'
+// })
