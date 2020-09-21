@@ -13,7 +13,7 @@ const Home = (props) => {
     }
     
     return (
-        <div>
+        <div className="homepage">
         <h1>FriendHub</h1>
         <Link to='/login'>Log In</Link>
         <br></br>

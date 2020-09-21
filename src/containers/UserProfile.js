@@ -1,22 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import User from '../components/User'
 
 
-class UserProfile extends React.Component {
-    
+class UserContainer extends React.Component {
     render(){
         return(
             <div>
-                <h1>Hello</h1>
+                <User user={this.props.user} />
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user 
-    }
-}
+const mapStateToProps = ({ user }) => ({ user })
 
-export default connect(mapStateToProps)(UserProfile);
+const mapDispatchToProps = dispatch => ({addUser: user =>({type: 'ADD_USER', user }) })
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);

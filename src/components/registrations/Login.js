@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class Login extends Component {
@@ -25,14 +25,14 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const {name, email, password} = this.state
-
-        this.props.dispatch({type: 'ADD_USER', user: this.state})
     
         let user = {
         name: name,
         email: email,
         password: password
         }
+
+        this.props.addUser(this.state)
         
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
             .then(response => {
@@ -45,8 +45,7 @@ class Login extends Component {
                 })
             }
             })
-            .catch(error => console.log('api errors:', error))
-        debugger   
+            .catch(error => console.log('api errors:', error))  
     };
 
     redirect = () => {
