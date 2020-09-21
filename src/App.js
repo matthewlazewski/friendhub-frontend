@@ -4,6 +4,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
+import UserProfile from './components/UserProfile'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,32 +14,38 @@ class App extends Component {
       user: {}
      };
   }
+  
   componentDidMount() {
-      this.loginStatus()
-    }
+    this.loginStatus()
+  }
+  
+  
   loginStatus = () => {
-      axios.get('http://localhost:3001/logged_in', {withCredentials: true})
-      .then(response => {
-        if (response.data.logged_in) {
-          this.handleLogin(response)
-        } else {
-          this.handleLogout()
-        }
-      })
-      .catch(error => console.log('api errors:', error))
-    }
+    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    .then(response => {
+      if (response.data.logged_in) {
+        this.handleLogin(response)
+      } else {
+        this.handleLogout()
+      }
+    })
+    .catch(error => console.log('api errors:', error))
+  }
+  
   handleLogin = (data) => {
-      this.setState({
-        isLoggedIn: true,
-        user: data.user
-      })
-    }
+    this.setState({
+      isLoggedIn: true,
+      user: data.user
+    })
+  }
+  
   handleLogout = () => {
-      this.setState({
-      isLoggedIn: false,
-      user: {}
-      })
-    }
+    this.setState({
+    isLoggedIn: false,
+    user: {}
+    })
+  }
+    
   render() {
       return (
         <div>
@@ -59,6 +67,12 @@ class App extends Component {
                 exact path='/signup' 
                 render={props => (
                 <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+                )}
+              />
+              <Route
+                exact path='/user/:userId'
+                render={props => (
+                  <UserProfile />
                 )}
               />
             </Switch>

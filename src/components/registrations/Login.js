@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 
 class Login extends Component {
+    
     constructor(props) {
         super(props);
         this.state = { 
@@ -12,20 +13,23 @@ class Login extends Component {
         errors: ''
         };
     }
+    
     handleChange = (event) => {
         const {name, value} = event.target
         this.setState({
         [name]: value
         })
-  };
+    };
+    
     handleSubmit = (event) => {
         event.preventDefault()
         const {name, email, password} = this.state
-    let user = {
+    
+        let user = {
         name: name,
         email: email,
         password: password
-        }
+    }
         
     axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response => {
@@ -57,17 +61,17 @@ class Login extends Component {
         )
     }
     render() {
-        const {username, email, password} = this.state
+        const {name, email, password} = this.state
         
         return (
             <div>
                 <h1>Log In</h1>
                 <form onSubmit={this.handleSubmit}>
                 <input
-                    placeholder="username"
+                    placeholder="name"
                     type="text"
-                    name="username"
-                    value={username}
+                    name="name"
+                    value={name}
                     onChange={this.handleChange}
                 />
                 <input

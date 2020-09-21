@@ -14,6 +14,7 @@ const Home = (props) => {
     
     return (
         <div>
+        <h1>FriendHub</h1>
         <Link to='/login'>Log In</Link>
         <br></br>
         <Link to='/signup'>Sign Up</Link>
