@@ -6,15 +6,16 @@ class User extends Component  {
     render (){ 
         return (
             <div>
-                <h1>Hello</h1>
+                <h1>Name: {this.props.user.name} </h1>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
+    debugger
     return {
-      user: state.user
+      user: state.userReducer.user
     };
   };
 

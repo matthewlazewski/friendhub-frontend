@@ -7,12 +7,13 @@ import userReducer from './reducers/userReducer';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
-  users: userReducer
+  userReducer: userReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 
 ReactDOM.render(

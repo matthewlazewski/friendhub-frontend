@@ -5,7 +5,6 @@ import User from '../components/User'
 
 class UserContainer extends React.Component {
     render(){
-        debugger
         return(
             <div>
                 <User user={this.props.user} />

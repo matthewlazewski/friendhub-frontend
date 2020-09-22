@@ -3,7 +3,8 @@ import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 // import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 // import { routerActions } from 'react-router-redux';
-
+import { connect } from 'react-redux'
+import { addUser } from './actions/userActions'
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
@@ -35,12 +36,14 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   }
   
-  handleLogin = (data) => {
-    this.setState({
-      isLoggedIn: true,
-      user: data.user
-    })
-  }
+  // handleLogin = (data) => {
+
+  //   this.props.addUser()
+  //   // this.setState({
+  //   //   isLoggedIn: true,
+  //   //   user: data.user
+  //   // })
+  // }
   
   handleLogout = () => {
     this.setState({
@@ -75,7 +78,7 @@ class App extends Component {
               <Route 
                 path='/profile'
                 render={props => (
-                <UserContainer {...props} user={this.state.user} />
+                <UserContainer {...props} />
                 )}
               /> 
             </Switch>
@@ -84,7 +87,13 @@ class App extends Component {
       );
     }
 }
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    user: state.user 
+  }
+}
+export default connect(mapStateToProps, { addUser })(App);
 
 // const userIsAuthenticated = connectedRouterRedirect({
 //   redirectPath: '/login',
