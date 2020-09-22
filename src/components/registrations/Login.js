@@ -8,6 +8,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = { 
+        isLoggedIn: false,
         name: '',
         email: '',
         password: '',
@@ -31,13 +32,17 @@ class Login extends Component {
         email: email,
         password: password
         }
-
-        this.props.dispatch({type: 'ADD_USER', user})
+        
         
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
             .then(response => {
             if (response.data.logged_in) {
-                // this.props.handleLogin(response.data)
+                user = response.data.user
+                this.setState({
+                    isLoggedIn: true,
+                    user: response.data.user
+                })
+                this.props.dispatch({type: 'ADD_USER', user })  
                 this.redirect()
             } else {
                 this.setState({
@@ -46,10 +51,6 @@ class Login extends Component {
             }
             })
             .catch(error => console.log('api errors:', error))  
-
-            this.setState({
-                user: user
-            })
     };
 
     redirect = () => {

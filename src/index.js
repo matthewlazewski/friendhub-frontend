@@ -9,10 +9,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import postsReducer from './reducers/postReducer';
+import commentsReducer from './reducers/commentReducer'
 
 const rootReducer = combineReducers({
   userReducer: userReducer,
-  postReducer: postsReducer
+  postReducer: postsReducer,
+  commentReducer: commentsReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

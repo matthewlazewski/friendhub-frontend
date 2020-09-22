@@ -8,32 +8,32 @@ const postsReducer = (state = { data: [], loading: false }, action) => {
             }
         case 'ADD_POSTS':
             
-            const allPosts = action.posts.data.map(post => {
+            const posts = action.posts.data.map(post => {
                 return {
                     id: post.id,
                     body: post.attributes.body,
-                    userId: post.relationships.user.posts.id,
+                    userId: post.relationships.user.data.id,
                     commentIds: post.relationships.comments.data.map(comment => comment.id)
                 }
             })
         
             return {
             ...state,
-            posts: state.data.concat(allPosts),
+            posts: state.data.concat(posts),
             loading: false
             }
         
         case "ADD_POST":
-            // const {
-            //     id, 
-            //     attributes: {body},
-            //     relationships: {
-            //         user: {data: {id: userId}}
-            //     }
-            // } = action.payload;
+            const {
+                id, 
+                attributes: {body},
+                relationships: {
+                    user: {data: {id: userId}}
+                }
+            } = action.payload;
             
-        // const post = {id,body,userId}
-        return {...state, loading:false}
+        const post = {id,body,userId}
+        return {...state, data: state.data.concat(post), loading:false}
         default:
             return state;
     }

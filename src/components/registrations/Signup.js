@@ -28,13 +28,16 @@ class Signup extends Component {
         email: email,
         password: password
         }
-
-        this.props.dispatch({type: 'ADD_USER', user})
     
         axios.post('http://localhost:3001/api/v1/users', {user}, {withCredentials: true})
         .then(response => {
-        if (response.data.status === 'created') {
-            //this.props.handleLogin(response.data)
+        if (response.data.status === "created") {
+            user = response.data.user
+            this.setState({
+                isLoggedIn: true,
+                user: response.data.user
+            })
+            this.props.dispatch({type: 'ADD_USER', user })  
             this.redirect()
         } else {
             this.setState({
@@ -42,7 +45,7 @@ class Signup extends Component {
             })
         }
         })
-        .catch(error => console.log('api errors:', error))
+        .catch(error => console.log('api errors:', error))  
     };
     
     redirect = () => {

@@ -3,12 +3,12 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 
 
-class Post extends React.Component {
+class PostForm extends React.Component {
     
     constructor(props){
         super(props);
         this.state = {
-            body: ''
+            body: '',
         }
     }
 
@@ -17,7 +17,8 @@ class Post extends React.Component {
         const {body} = this.state
     
         let post = {
-        body: body,
+            user_id: this.props.userId,
+            body
         }
 
         this.props.dispatch({type: 'ADD_POST', post})
@@ -68,4 +69,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps)(PostForm)

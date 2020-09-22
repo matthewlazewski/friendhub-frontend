@@ -37,8 +37,6 @@ class App extends Component {
   }
   
   handleLogin = (data) => {
-
-    this.props.addUser()
     this.setState({
       isLoggedIn: true,
       user: data.user
