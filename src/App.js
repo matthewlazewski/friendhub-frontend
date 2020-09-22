@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
+// import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 // import { routerActions } from 'react-router-redux';
 
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
-import UserProfile from './containers/UserProfile'
+import UserContainer from './containers/UserContainer';
 
 class App extends Component {
   constructor(props) {
@@ -72,10 +72,12 @@ class App extends Component {
                 <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
                 )}
               />
-              <Route
-                path= "/profile"
-                component={UserProfile}
-              />
+              <Route 
+                path='/profile'
+                render={props => (
+                <UserContainer {...props} user={this.state.user} />
+                )}
+              /> 
             </Switch>
           </BrowserRouter>
         </div>

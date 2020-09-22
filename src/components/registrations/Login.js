@@ -32,7 +32,7 @@ class Login extends Component {
         password: password
         }
 
-        this.props.addUser(this.state)
+        this.props.dispatch({type: 'ADD_USER', user})
         
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
             .then(response => {
@@ -46,6 +46,10 @@ class Login extends Component {
             }
             })
             .catch(error => console.log('api errors:', error))  
+
+            this.setState({
+                user: user
+            })
     };
 
     redirect = () => {
