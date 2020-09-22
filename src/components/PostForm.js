@@ -21,12 +21,15 @@ class PostForm extends React.Component {
             body
         }
 
-        this.props.dispatch({type: 'ADD_POST', post})
         
         axios.post('http://localhost:3001/api/v1/posts', {post})
             .then(response => {
-            if (response.data.logged_in) {
-                this.redirect()
+            if (response.data) {
+                post = response.data.post
+                this.setState({
+                    body: response.data.post.body
+                })
+                this.props.dispatch({type: 'ADD_POST', post })  
             } else {
                 this.setState({
                 errors: response.data.errors
@@ -34,10 +37,6 @@ class PostForm extends React.Component {
             }
             })
             .catch(error => console.log('api errors:', error))  
-
-            this.setState({
-                body: body
-            })
     
     }
 

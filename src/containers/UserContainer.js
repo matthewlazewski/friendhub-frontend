@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import User from '../components/User'
 import PostForm from '../components/PostForm'
+import Post from '../components/Posts'
 
 
 class UserContainer extends React.Component {
@@ -9,6 +10,7 @@ class UserContainer extends React.Component {
         return(
             <div>
                 <User user={this.props.user} />
+                <Post />
                 <PostForm />
             </div>
         )
@@ -17,6 +19,6 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = ({ user }) => ({ user })
 
-const mapDispatchToProps = dispatch => ({addUser: user =>({type: 'ADD_USER', user }) })
+// const mapDispatchToProps = dispatch => ({addUser: user =>({type: 'ADD_USER', user }) })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps)(UserContainer);

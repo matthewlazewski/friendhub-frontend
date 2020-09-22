@@ -46,7 +46,7 @@ class Login extends Component {
                 this.redirect()
             } else {
                 this.setState({
-                errors: response.data.errors
+                    errors: response.data.errors
                 })
             }
             })
