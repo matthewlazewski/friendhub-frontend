@@ -36,14 +36,14 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   }
   
-  // handleLogin = (data) => {
+  handleLogin = (data) => {
 
-  //   this.props.addUser()
-  //   // this.setState({
-  //   //   isLoggedIn: true,
-  //   //   user: data.user
-  //   // })
-  // }
+    this.props.addUser()
+    this.setState({
+      isLoggedIn: true,
+      user: data.user
+    })
+  }
   
   handleLogout = () => {
     this.setState({

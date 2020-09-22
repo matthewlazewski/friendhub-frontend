@@ -7,4 +7,4 @@ export const fetchPosts = () => {
         dispatch({ type: 'ADD_POSTS', posts: responseJSON.images })
       })
     }
-  }
+    }

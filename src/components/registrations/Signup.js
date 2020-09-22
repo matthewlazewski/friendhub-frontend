@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { connect } from 'react-redux';
 
 class Signup extends Component {
     constructor(props) {
@@ -21,16 +22,19 @@ class Signup extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const {name, email, password} = this.state
+        
         let user = {
         name: name,
         email: email,
         password: password
         }
+
+        this.props.dispatch({type: 'ADD_USER', user})
     
         axios.post('http://localhost:3001/api/v1/users', {user}, {withCredentials: true})
         .then(response => {
         if (response.data.status === 'created') {
-            this.props.handleLogin(response.data)
+            //this.props.handleLogin(response.data)
             this.redirect()
         } else {
             this.setState({
@@ -42,7 +46,7 @@ class Signup extends Component {
     };
     
     redirect = () => {
-        this.props.history.push('/')
+        this.props.history.push('/profile')
     }
     
     handleErrors = () => {
@@ -98,4 +102,4 @@ class Signup extends Component {
             );
         }
 }
-export default Signup;
+export default connect()(Signup);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import User from '../components/User'
+import Post from '../components/Post'
 
 
 class UserContainer extends React.Component {
@@ -8,6 +9,7 @@ class UserContainer extends React.Component {
         return(
             <div>
                 <User user={this.props.user} />
+                <Post />
             </div>
         )
     }

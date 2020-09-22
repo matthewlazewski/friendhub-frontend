@@ -8,9 +8,11 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import postsReducer from './reducers/postReducer';
 
 const rootReducer = combineReducers({
-  userReducer: userReducer
+  userReducer: userReducer,
+  postReducer: postsReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

@@ -13,10 +13,9 @@ class User extends Component  {
 }
 
 const mapStateToProps = (state) => {
-    debugger
     return {
       user: state.userReducer.user
     };
-  };
+};
 
 export default connect(mapStateToProps)(User);
