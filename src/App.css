@@ -2,6 +2,8 @@
 
 .App {
   text-align: center;
+  list-style: none;
+  background-color: palegoldenrod;
 }
 
 .App-logo {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import './App.css'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 // import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 // import { routerActions } from 'react-router-redux';
@@ -14,6 +15,7 @@ import UserContainer from './containers/UserContainer';
 
 
 class App extends Component {
+  
   constructor(props) {
     super(props);
     this.state = { 
@@ -23,8 +25,8 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.loginStatus()
-    fetchPosts()
+    this.props.fetchPosts();
+    this.loginStatus();
   }
   
   
@@ -95,7 +97,7 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
-export default connect(mapStateToProps, { addUser })(App);
+export default connect(mapStateToProps, { addUser, fetchPosts })(App);
 
 // const userIsAuthenticated = connectedRouterRedirect({
 //   redirectPath: '/login',

@@ -1,5 +1,4 @@
 import React from 'react';
-import { fetchPosts } from '../actions/postActions'
 import { connect } from 'react-redux';
 import User from '../components/User'
 import PostForm from '../components/PostForm'
@@ -10,23 +9,27 @@ class UserContainer extends React.Component {
     
     render(){
         return(
-            <div>
+            <div className="App">
                 <User user={this.props.user} />
-                <Posts  />
-                <PostForm user={this.props.user} fetchPosts={this.props.fetchPosts} />
+                <Posts 
+                posts={this.props.posts} 
+                deletePost={this.props.deletePost}/>
+                <PostForm user={this.props.user} />
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
-
-const mapDispatchToProps = dispatch => {
-    return{
-        fetchPosts: () => {
-            dispatch(fetchPosts())
-        }
-    }
+const mapStateToProps = state => {
+    console.log(state)
+    return ({
+    user: state.userReducer.user,
+    posts: state.postReducer.posts})
 }
+
+const mapDispatchToProps = dispatch => ({
+    addPost: post => dispatch({type: 'ADD_POST', post}),
+    deletePost: id => dispatch({type: 'DELETE_POST', id})
+})
 
 export default connect(mapStateToProps,mapDispatchToProps)(UserContainer);

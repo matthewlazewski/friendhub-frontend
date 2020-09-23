@@ -72,16 +72,9 @@ class Login extends Component {
         const {name, email, password} = this.state
         
         return (
-            <div>
+            <div className="App">
                 <h1>Log In</h1>
                 <form onSubmit={this.handleSubmit}>
-                <input
-                    placeholder="name"
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                />
                 <input
                     placeholder="email"
                     type="text"

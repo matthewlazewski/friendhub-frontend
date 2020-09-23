@@ -1,14 +1,13 @@
-const postsReducer = (state = { data: [], loading: false }, action) => {
+const postsReducer = (state = { posts: [], loading: false }, action) => {
     switch(action.type) {
         case 'LOADING_POSTS':
             return {
             ...state,
-            posts: [...state.data],
+            posts: [...state.posts],
             loading: true
             }
         case 'ADD_POSTS':
-            
-            const posts = action.posts.data.map(post => {
+            const posts = action.posts.map(post => {
                 return {
                     id: post.id,
                     body: post.attributes.body,
@@ -19,13 +18,12 @@ const postsReducer = (state = { data: [], loading: false }, action) => {
         
             return {
             ...state,
-            posts: state.data.concat(posts),
+            posts: state.posts.concat(posts),
             loading: false
             }
         
         case "ADD_POST":
-            console.log(action.post.body)
-            debugger
+            console.log(action.post)
             const {
                 id, 
                 attributes: {body},
@@ -36,22 +34,22 @@ const postsReducer = (state = { data: [], loading: false }, action) => {
             } = action.post;
             
         const post = {id,body,userId}
-        return {...state, data: state.data.concat(post), loading:false}
+        return {...state, posts: state.posts.concat(post), loading:false}
 
         case 'DELETE_POST':
             const filterPosts = state.posts.filter(post => post.id !== action.id);
             return {...state, filterPosts}
 
-        case "PATCH_COMMENT":
+        case "PATCH_POST":
             const editPost = action.post
             const patchObj = {
                 id: editPost.id,
                 content: editPost.attributes.content,
                 userId: editPost.relationships.user.data.id,
             };
-            const editPosts = state.data.map( c =>  c.id !== patchObj.id ? c : patchObj);
+            const editPosts = state.posts.map( c =>  c.id !== patchObj.id ? c : patchObj);
         
-            return {...state, data: editPosts, pending: false, id: 0};
+            return {...state, posts: editPosts, pending: false, id: 0};
 
         default:
             return state;

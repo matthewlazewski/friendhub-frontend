@@ -17,17 +17,17 @@ class PostForm extends React.Component {
         const {body} = this.state
     
         let post = {
-            user_id: this.props.userId,
+            user_id: this.props.user.id,
             body
         }
 
         
-        axios.post('http://localhost:3001/api/v1/posts', {post})
+        axios.post('http://localhost:3001/api/v1/posts', {post}, {withCredentials: true})
             .then(response => {
             if (response.data) {
-                post = response.data.data
+                post = response.data.post.data
                 this.setState({
-                    body: response.data.data.attributes.body
+                    body: response.data.post.data.attributes.body
                 })
                 this.props.dispatch({type: 'ADD_POST', post })  
             } else {
@@ -62,4 +62,10 @@ class PostForm extends React.Component {
     }
 }
 
-export default connect()(PostForm)
+const mapStateToProps = (state) => {
+    return {
+      user: state.userReducer.user, 
+    };
+};
+
+export default connect(mapStateToProps)(PostForm)

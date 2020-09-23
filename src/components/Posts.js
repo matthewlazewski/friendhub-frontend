@@ -1,28 +1,30 @@
 import React from 'react';
 import Comments from './Comments';
-import { connect} from 'react-redux';
+import Post  from './Post';
 
 class Posts extends React.Component {
-    allposts = () => {
-        return this.props.fetchPosts.map(post => <p key={post.id}>{post.body}</p>)
+    componentDidUpdate(){
+        console.log('updated')
     }
-    
+
     render(){
-        debugger
+        const { posts, deletePost } = this.props 
+        const postList = posts.map(post => {
+            return( 
+            <Post 
+            key ={post.id} 
+            post={post} 
+            deletePost={deletePost}
+            />)
+        })
         return (
-            <div>
-                <h1>posts go here</h1>
-                <p>{this.props.user.name}</p>
-                <Comments />
+            <div className="App">
+                <ul>
+                    {postList}
+                </ul>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-      user: state.userReducer.user, 
-    };
-};
-
-export default connect(mapStateToProps)(Posts);
+export default Posts;
