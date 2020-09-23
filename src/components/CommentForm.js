@@ -13,26 +13,29 @@ class CommentForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const {content} = this.state
-    
+
+
         let comment = {
-            user_id: this.props.userId,
+            user_id: this.props.user.id,
+            post_id: this.props.post.id,
             content
         }
 
         
-        axios.post('http://localhost:3001/api/v1/comments', {comment})
+        axios.post('http://localhost:3001/api/v1/comments', {comment}, {withCredentials: true})
             .then(response => {
-            if (response.data) {
-                comment = response.data.data
-                this.setState({
-                    content: response.data.data.attributes.body
-                })
-                this.props.dispatch({type: 'ADD_COMMENT', comment })  
-            } else {
-                this.setState({
-                errors: response.data.errors
-                })
-            }
+                if (response.data) {
+                    debugger
+                    comment = response.data.data
+                    this.setState({
+                        content: response.data.data.attributes.body
+                    })
+                    this.props.dispatch({type: 'ADD_COMMENT', comment })  
+                } else {
+                    this.setState({
+                    errors: response.data.errors
+                    })
+                }
             })
             .catch(error => console.log('api errors:', error))  
     
@@ -40,7 +43,7 @@ class CommentForm extends React.Component {
 
     handleInput(e) {
         this.setState({
-            body: e.target.value
+            content: e.target.value
         })
     }
     render(){
@@ -59,4 +62,10 @@ class CommentForm extends React.Component {
     }
 }
 
-export default connect()(CommentForm)
+const mapStateToProps = (state) => {
+    return({
+      user: state.userReducer.user,
+    })
+};
+
+export default connect(mapStateToProps)(CommentForm)

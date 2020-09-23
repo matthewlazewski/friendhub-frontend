@@ -8,7 +8,7 @@ class CommentContainer extends React.Component {
         return (
             <div className="App">
                 <Comments />
-                <CommentForm />
+                <CommentForm  post={this.props.post}/>
             </div>
         )
     }
