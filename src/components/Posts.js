@@ -1,9 +1,19 @@
 import React from 'react';
 
-const Posts = props => {
-    return (
-        <h1>All posts will go here</h1>
-    )
+class Posts extends React.Component {
+
+    allposts = () => {
+        return this.props.posts.map(post => <p key={post.id}>{post.body}</p>)
+    }
+    
+    render(){
+        return (
+            <div>
+                <h1>posts go here</h1>
+                <p>put comment container here</p>
+            </div>
+        )
+    }
 }
 
 export default Posts;

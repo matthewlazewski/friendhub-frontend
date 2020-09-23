@@ -25,9 +25,9 @@ class PostForm extends React.Component {
         axios.post('http://localhost:3001/api/v1/posts', {post})
             .then(response => {
             if (response.data) {
-                post = response.data.post
+                post = response.data.data.attributes
                 this.setState({
-                    body: response.data.post.body
+                    body: response.data.data.attributes.body
                 })
                 this.props.dispatch({type: 'ADD_POST', post })  
             } else {
@@ -62,10 +62,4 @@ class PostForm extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-      post: state.postReducer.post
-    };
-};
-
-export default connect(mapStateToProps)(PostForm)
+export default connect()(PostForm)

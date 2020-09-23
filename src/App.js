@@ -5,10 +5,13 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 // import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux'
 import { addUser } from './actions/userActions'
+import { fetchPosts } from './actions/postActions'
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
 import UserContainer from './containers/UserContainer';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +24,7 @@ class App extends Component {
   
   componentDidMount() {
     this.loginStatus()
+    fetchPosts()
   }
   
   
@@ -88,7 +92,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user 
+    user: state.user
   }
 }
 export default connect(mapStateToProps, { addUser })(App);

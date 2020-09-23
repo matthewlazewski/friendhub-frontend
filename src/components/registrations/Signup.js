@@ -38,14 +38,14 @@ class Signup extends Component {
                 user: response.data.user
             })
             this.props.dispatch({type: 'ADD_USER', user })  
-            this.redirect()
+            this.redirect() 
         } else {
             this.setState({
             errors: response.data.errors
             })
         }
         })
-        .catch(error => console.log('api errors:', error))  
+        .catch(error => console.log('api errors:', error)) 
     };
     
     redirect = () => {

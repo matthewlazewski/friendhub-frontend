@@ -1,16 +1,22 @@
 import React from 'react';
+import { fetchPosts } from '../actions/postActions'
 import { connect } from 'react-redux';
 import User from '../components/User'
 import PostForm from '../components/PostForm'
-import Post from '../components/Posts'
+import Posts from '../components/Posts'
 
 
 class UserContainer extends React.Component {
+    
+    componentDidMount(){
+        this.props.fetchPosts()
+    }
+
     render(){
         return(
             <div>
                 <User user={this.props.user} />
-                <Post />
+                <Posts  />
                 <PostForm />
             </div>
         )
@@ -19,6 +25,12 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = ({ user }) => ({ user })
 
-// const mapDispatchToProps = dispatch => ({addUser: user =>({type: 'ADD_USER', user }) })
+const mapDispatchToProps = dispatch => {
+    return{
+        fetchPosts: () => {
+            dispatch(fetchPosts())
+        }
+    }
+}
 
-export default connect(mapStateToProps)(UserContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(UserContainer);
