@@ -3,7 +3,7 @@ const fetchPosts = () => {
     fetch('http:localhost:3001/api/v1/posts')
     .then(res => res.json())
     .then(json => dispatch({type: 'ADD_POSTS', posts: json.posts})
-    )};
+    )}
 };
 
 // const postPost = (payload) => {
@@ -32,4 +32,4 @@ const fetchPosts = () => {
 //   payload
 // });
 
-export {fetchPosts} ;
+export {fetchPosts};

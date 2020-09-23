@@ -8,16 +8,12 @@ import Posts from '../components/Posts'
 
 class UserContainer extends React.Component {
     
-    componentDidMount(){
-        this.props.fetchPosts()
-    }
-
     render(){
         return(
             <div>
                 <User user={this.props.user} />
                 <Posts  />
-                <PostForm user={this.props.user} />
+                <PostForm user={this.props.user} fetchPosts={this.props.fetchPosts} />
             </div>
         )
     }
