@@ -25,7 +25,7 @@ class PostForm extends React.Component {
         axios.post('http://localhost:3001/api/v1/posts', {post})
             .then(response => {
             if (response.data) {
-                post = response.data.data.attributes
+                post = response.data.data
                 this.setState({
                     body: response.data.data.attributes.body
                 })

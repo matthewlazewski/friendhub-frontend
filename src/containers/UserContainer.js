@@ -17,7 +17,7 @@ class UserContainer extends React.Component {
             <div>
                 <User user={this.props.user} />
                 <Posts  />
-                <PostForm />
+                <PostForm user={this.props.user} />
             </div>
         )
     }

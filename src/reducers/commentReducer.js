@@ -7,12 +7,7 @@ const initialState = {
     let comment, comments;
   
     switch(action.type) {
-  
-      case "BEGIN_COMMENTS_REQUEST":
-        return {...state, data: [...state.data], pending: true};
-  
-      case "BEGIN_PATCH_COMMENTS_REQUEST":
-        return {...state, data: [...state.data], pending: true, id: action.id}
+
   
       case "ADD_COMMENTS":
         comments = action.comments.data.map(comment => {
