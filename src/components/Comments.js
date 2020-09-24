@@ -1,15 +1,34 @@
 import React from 'react'
-import { connect} from 'react-redux';
+import Comment from './Comment'
+import { Container, Row, Col } from 'react-bootstrap'
+
 
 
 class Comments extends React.Component {
     render(){
+        const { comments } = this.props
+        const commentList = comments.map(comment => {
+            return( 
+                <Row key={comment.id}>
+                    <Col key={comment.id} > 
+                        <Comment 
+                            key ={comment.id} 
+                            comment={comment} 
+                        />
+                    </Col>
+                </Row>
+        )})
+
         return(
-            <div>
-                comments will go here <br></br>
-            </div>
+            <Container>
+                <div className="App">
+                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
+                        {commentList}
+                    </ul>
+                </div>
+            </Container>
         )
     }
 }
 
-export default connect()(Comments)
+export default Comments;

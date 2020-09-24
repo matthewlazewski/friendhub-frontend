@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { Container, Button } from 'react-bootstrap'
+
 
 class Login extends Component {
     
@@ -69,47 +71,48 @@ class Login extends Component {
         )
     }
     render() {
-        const {name, email, password} = this.state
-        
+        const {email, password} = this.state
         return (
-            <div className="App">
-                <h1>Log In</h1>
-                <form onSubmit={this.handleSubmit}>
-                <input
-                    placeholder="name"
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                />
-                <input
-                    placeholder="email"
-                    type="text"
-                    name="email"
-                    value={email}
-                    onChange={this.handleChange}
-                />
-                <input
-                    placeholder="password"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
-                />
-                <button placeholder="submit" type="submit">
-                    Log In
-                </button>
-                <div>
-                or <Link to='/signup'>sign up</Link>
+            <Container>
+                <div className="App">
+                    <h1>Log In</h1>
+                    <form onSubmit={this.handleSubmit}>
+                    {/* <input
+                        placeholder="name"
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={this.handleChange}
+                    /> */}
+                    <input
+                        placeholder="email"
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={this.handleChange}
+                    />
+                    <input
+                        placeholder="password"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                    />
+                    <Button placeholder="submit" type="submit">
+                        Log In
+                    </Button>
+                    <div>
+                    or <Link to='/signup'>sign up</Link>
+                    </div>
+                    
+                    </form>
+                    <div>
+                    {
+                        this.state.errors ? this.handleErrors() : null
+                    }
+                    </div>
                 </div>
-                
-                </form>
-                <div>
-                {
-                    this.state.errors ? this.handleErrors() : null
-                }
-                </div>
-            </div>
+            </Container>
         );
     }
 }

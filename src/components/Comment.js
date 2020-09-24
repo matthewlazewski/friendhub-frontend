@@ -1,7 +1,7 @@
 import React from 'react'
-import commentsReducer from '../reducers/commentReducer';
 
-class Comment extends Component {
+
+class Comment extends React.Component {
 
     render() {
       const { comment } = this.props;

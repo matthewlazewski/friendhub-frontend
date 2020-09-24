@@ -29,7 +29,8 @@ const mapStateToProps = state => {
     console.log(state)
     return ({
     user: state.userReducer.user,
-    posts: state.postReducer.posts})
+    posts: state.postReducer.posts,
+    post: state.postReducer.post})
 }
 
 const mapDispatchToProps = dispatch => ({

@@ -1,23 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
-html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+html, body {
+  background-image: url('./images/Mountains.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  // -webkit-box-sizing: border-box;
+  //         box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
+// *, *:before, *:after {
+//   -webkit-box-sizing: inherit;
+//           box-sizing: inherit;
+// }
 
-body {
-  margin: 20px 0;
-  padding: 0;
-  line-height: 1;
-  font-family: 'Roboto', sans-serif;
-  color: #202020;
-  background-color: #fbfbfb;
-  font-smooth: always;  
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; 
+// body {
+//   margin: 0;
+//   padding: 0;
+//   line-height: 1;
+//   font-family: 'Roboto', sans-serif;
+//   color: #202020;
+//   background-color: #fbfbfb;
+//   font-smooth: always;  
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale; 
+// }
+
+Link {
+  color: black;
 }

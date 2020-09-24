@@ -4,7 +4,6 @@ export default function userReducer(state = {
     switch (action.type) {
       case 'ADD_USER':
         console.log('adding ', action.user);
-        debugger
         const {
           id,
           attributes:{ 

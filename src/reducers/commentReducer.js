@@ -19,18 +19,20 @@
   
       case "ADD_COMMENT":
         
-        console.log(action.post)
+        console.log(action.comment)
+        debugger
             const {
                 id, 
-                attributes: {body},
+                attributes: {content},
                 relationships: {
                     user: {data: {id: userId}},
+                    post: {data: {id: postId}}
     
                 }
-            } = action.post;
+            } = action.comment;
             
-        const post = {id,body,userId}
-        return {...state, posts: state.posts.concat(post), loading:false}
+        const comment = {id,content,userId,postId}
+        return {...state, posts: state.comments.concat(comment), loading:false}
   
       // case "DELETE_COMMENT":
       //   const toDelete = action.payload.comment_id;

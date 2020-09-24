@@ -1,16 +1,10 @@
 const fetchComments = () => {
-    return dispatch => {
-      dispatch({type: "BEGIN_COMMENTS_REQUEST"});
-      fetch('/api/v1/comments')
-      .then(res => res.json())
-      .then(json => dispatch(addComments(json)));
-    };
-  };
-  
-const addComments = comments => ({
-    type: "ADD_COMMENTS",
-    comments
-})
+  return (dispatch) => {
+    fetch('http://localhost:3001/api/v1/comments')
+    .then(res => res.json())
+    .then(json => dispatch({type: 'ADD_COMMENTS', posts: json.data})
+    )}
+};
   
 const postComment = payload => (
     dispatch => {

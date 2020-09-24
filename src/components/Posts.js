@@ -11,13 +11,13 @@ class Posts extends React.Component {
         const { posts } = this.props 
         const postList = posts.map(post => {
             return( 
-                <Row>
-                <Col key={post.id} > 
-                <Post 
-                key ={post.id} 
-                post={post} 
-                />
-                </Col>
+                <Row key={post.id}>
+                    <Col key={post.id} > 
+                        <Post 
+                            key ={post.id} 
+                            post={post} 
+                        />
+                    </Col>
                 </Row>
                 )
         })

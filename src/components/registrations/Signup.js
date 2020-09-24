@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Container, Button } from 'react-bootstrap'
+
 
 
 class Signup extends Component {
@@ -53,7 +55,6 @@ class Signup extends Component {
     };
     
     redirect = () => {
-        debugger
         this.props.history.push('/profile')
     }
     
@@ -72,41 +73,43 @@ class Signup extends Component {
         const {name, email, password} = this.state
         
         return (
-            <div>
-                <h1>Sign Up</h1>
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    placeholder="name"
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={this.handleChange}
-                />
-                <input
-                    placeholder="email"
-                    type="text"
-                    name="email"
-                    value={email}
-                    onChange={this.handleChange}
-                />
-                <input 
-                    placeholder="password"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
-                />
-                <button placeholder="submit" type="submit">
-                    Sign Up
-                </button><br></br>
-                already a member? <Link to='/login'>Log In</Link>
-                </form>
+            <Container>
                 <div>
-                {
-                    this.state.errors ? this.handleErrors() : null
-                }
+                    <h1>Sign Up</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <input
+                        placeholder="name"
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={this.handleChange}
+                    />
+                    <input
+                        placeholder="email"
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={this.handleChange}
+                    />
+                    <input 
+                        placeholder="password"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                    />
+                    <Button placeholder="submit" type="submit">
+                        Sign Up
+                    </Button><br></br>
+                    already a member? <Link to='/login'>Log In</Link>
+                    </form>
+                    <div>
+                    {
+                        this.state.errors ? this.handleErrors() : null
+                    }
+                    </div>
                 </div>
-            </div>
+            </Container>
             );
         }
 }

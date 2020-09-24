@@ -7,11 +7,20 @@ class CommentContainer extends React.Component {
     render(){
         return (
             <div className="App">
-                <Comments />
-                <CommentForm  post={this.props.post}/>
+                <Comments comments={this.props.comments} />
+                <CommentForm  post={this.props.post} user={this.props.user} />
             </div>
         )
     }
 }
 
-export default connect()(CommentContainer)
+const mapStateToProps = state => {
+    console.log(state)
+    return ({
+        comments: state.commentReducer.comments,
+        post: state.postReducer.post,
+        user: state.userReducer.user
+    })
+}
+
+export default connect(mapStateToProps)(CommentContainer)
