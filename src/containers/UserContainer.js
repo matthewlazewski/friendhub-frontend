@@ -17,7 +17,7 @@ class UserContainer extends React.Component {
                     <Row>
                         <Posts 
                         posts={this.props.posts} 
-                        deletePost={this.props.deletePost}/>
+                        user={this.props.user} />
                     </Row>
                 </div>
             </Container>

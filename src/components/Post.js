@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CommentsContainer from '../containers/CommentContainer'
+import { Card } from 'react-bootstrap'
 
 class Post extends Component {
 
@@ -7,10 +8,13 @@ class Post extends Component {
     const { post } = this.props;
     return (
       <div>
+        <Card>
         <li>
-          {post.body}
+          <h3>{post.body}</h3>
+          <p>Comments:</p>
           <CommentsContainer post={post}/>
         </li>
+        </Card>
         <br></br>
       </div>
     );

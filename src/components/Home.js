@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap'
 
 const styles = makeStyles({
     root: {
-      color: 'white',
+      color: 'blue',
       textAlign: 'center',
     }
 });

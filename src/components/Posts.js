@@ -1,36 +1,44 @@
 import React from 'react';
 import Post  from './Post';
+import Comments from './Comments'
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap'
 
-class Posts extends React.Component {
-    componentDidUpdate(){
-        console.log('updated')
-    }
+function Posts({comments, id, user, posts}){
 
-    render(){
-        const { posts } = this.props 
-        const postList = posts.map(post => {
-            return( 
-                <Row key={post.id}>
-                    <Col key={post.id} > 
-                        <Post 
-                            key ={post.id} 
-                            post={post} 
-                        />
-                    </Col>
-                </Row>
-                )
-        })
-        return (
-            <Container>
-                <div className="App">
-                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
-                        {postList}
-                    </ul>
-                </div>
-            </Container>
-        )
-    }
+    comments = comments.filter(comment => id === comment.postId)
+    
+    const postList = posts.map(post => {
+        return( 
+            <Row key={post.id}>
+                <Col key={post.id} > 
+                    <Post 
+                        key ={post.id} 
+                        post={post}
+                        user ={user} 
+                    />
+                <Comments comments={comments} />
+                </Col>
+            </Row>
+            )
+    })
+    return (
+        <Container>
+            <div className="App">
+                <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
+                    {postList}
+
+                </ul>
+            </div>
+        </Container>
+    )
 }
 
-export default Posts;
+const mapStateToProps = state => {
+    return({
+        posts: state.postReducer.posts,
+        comments: state.commentReducer.comments
+    })
+}
+
+export default connect(mapStateToProps)(Posts);

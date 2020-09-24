@@ -1,12 +1,13 @@
 import React from 'react'
 import Comment from './Comment'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
 
 
 class Comments extends React.Component {
     render(){
-        const { comments } = this.props
+        const comments  = this.props.comments
         const commentList = comments.map(comment => {
             return( 
                 <Row key={comment.id}> 
@@ -29,4 +30,8 @@ class Comments extends React.Component {
     }
 }
 
-export default Comments;
+const mapStateToProps= state => ({
+    currentUser: state.userReducer.user
+})
+
+export default connect(mapStateToProps)(Comments);
