@@ -1,44 +1,31 @@
 import React from 'react';
-import Post  from './Post';
-import Comments from './Comments'
-import { connect } from 'react-redux';
-import { Container, Row, Col } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import Post from './Post';
+import { Container, Row } from 'react-bootstrap'
 
-function Posts({comments, id, user, posts}){
+class Posts extends React.Component {
 
-    comments = comments.filter(comment => id === comment.postId)
-    
-    const postList = posts.map(post => {
-        return( 
-            <Row key={post.id}>
-                <Col key={post.id} > 
+    render(){
+        const { posts } = this.props 
+        const postList = posts.map(post => {
+            return( 
+                <Row>
                     <Post 
-                        key ={post.id} 
-                        post={post}
-                        user ={user} 
+                key ={post.id} 
+                post={post} 
                     />
-                <Comments comments={comments} />
-                </Col>
-            </Row>
-            )
-    })
-    return (
-        <Container>
-            <div className="App">
-                <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
-                    {postList}
-
-                </ul>
-            </div>
-        </Container>
-    )
+                </Row>)
+        })
+        return (
+            <Container>
+                <div className="App">
+                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
+                        {postList}
+                    </ul>
+                </div>
+            </Container>
+        )
+    }
 }
 
-const mapStateToProps = state => {
-    return({
-        posts: state.postReducer.posts,
-        comments: state.commentReducer.comments
-    })
-}
-
-export default connect(mapStateToProps)(Posts);
+export default connect()(Posts);

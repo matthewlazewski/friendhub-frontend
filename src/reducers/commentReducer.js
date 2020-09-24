@@ -31,7 +31,7 @@
             } = action.comment;
             
         const comment = {id,content,userId,postId}
-        return {...state, posts: state.comments.concat(comment), loading:false}
+        return {...state, comments: state.comments.concat(comment), loading:false}
   
       // case "DELETE_COMMENT":
       //   const toDelete = action.payload.comment_id;
