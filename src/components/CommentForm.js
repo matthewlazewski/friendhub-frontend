@@ -25,10 +25,9 @@ class CommentForm extends React.Component {
         axios.post('http://localhost:3001/api/v1/comments', {comment}, {withCredentials: true})
             .then(response => {
                 if (response.data) {
-                    debugger
-                    comment = response.data.data
+                    comment = response.data.comment.data
                     this.setState({
-                        content: response.data.data.attributes.body
+                        content: response.data.data.attributes.content
                     })
                     this.props.dispatch({type: 'ADD_COMMENT', comment })  
                 } else {

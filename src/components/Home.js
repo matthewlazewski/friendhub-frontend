@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles'
+import { Container, Button } from 'react-bootstrap'
 
 const styles = makeStyles({
     root: {
@@ -27,17 +28,19 @@ const Home = (props) => {
     }
     
     return (
-        <div className={classes.root}>
-            <h1>FriendHub</h1>
-            <Link to='/login'>Log In</Link>
-            <br></br>
-            <Link to='/signup'>Sign Up</Link>
-            <br></br>
-            {
-                props.loggedInStatus ? 
-                <Link to='/logout' onClick={handleClick}>Logout</Link> : null
-            }
-        </div>
+        <Container>
+            <div className={classes.root}>
+                <h1>FriendHub</h1>
+                <Button><Link to='/login'>Log In</Link></Button>
+                <br></br>
+                <Button><Link to='/signup'>Sign Up</Link></Button>
+                <br></br>
+                {
+                    props.loggedInStatus ? 
+                    <Link to='/logout' onClick={handleClick}>Logout</Link> : null
+                }
+            </div>
+        </Container>
     );
 };
 export default Home;

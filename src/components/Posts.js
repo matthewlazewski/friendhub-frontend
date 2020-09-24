@@ -1,6 +1,6 @@
 import React from 'react';
-import Comments from './Comments';
 import Post  from './Post';
+import { Container, Row, Col } from 'react-bootstrap'
 
 class Posts extends React.Component {
     componentDidUpdate(){
@@ -8,21 +8,27 @@ class Posts extends React.Component {
     }
 
     render(){
-        const { posts, deletePost } = this.props 
+        const { posts } = this.props 
         const postList = posts.map(post => {
             return( 
-            <Post 
-            key ={post.id} 
-            post={post} 
-            deletePost={deletePost}
-            />)
+                <Row>
+                <Col key={post.id} > 
+                <Post 
+                key ={post.id} 
+                post={post} 
+                />
+                </Col>
+                </Row>
+                )
         })
         return (
-            <div className="App">
-                <ul>
-                    {postList}
-                </ul>
-            </div>
+            <Container>
+                <div className="App">
+                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
+                        {postList}
+                    </ul>
+                </div>
+            </Container>
         )
     }
 }

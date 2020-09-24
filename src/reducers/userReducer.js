@@ -3,7 +3,8 @@ export default function userReducer(state = {
   }, action){
     switch (action.type) {
       case 'ADD_USER':
-        console.log('adding ', action.user.data);
+        console.log('adding ', action.user);
+        debugger
         const {
           id,
           attributes:{ 
@@ -17,7 +18,7 @@ export default function userReducer(state = {
               data: comments
             }
           }
-        } = action.user.data
+        } = action.user
 
         const currentUser = {
           id: id,

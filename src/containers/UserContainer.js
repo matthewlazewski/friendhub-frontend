@@ -3,19 +3,24 @@ import { connect } from 'react-redux';
 import User from '../components/User'
 import PostForm from '../components/PostForm'
 import Posts from '../components/Posts'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row } from 'react-bootstrap'
 
 class UserContainer extends React.Component {
     
     render(){
         return(
-            <div className="App">
-                <User user={this.props.user} />
-                <Posts 
-                posts={this.props.posts} 
-                deletePost={this.props.deletePost}/>
-                <PostForm user={this.props.user} />
-            </div>
+            <Container>
+                <div className="App">
+                    <User user={this.props.user} />
+                    <PostForm user={this.props.user} />
+                    <Row>
+                        <Posts 
+                        posts={this.props.posts} 
+                        deletePost={this.props.deletePost}/>
+                    </Row>
+                </div>
+            </Container>
         )
     }
 }

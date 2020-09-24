@@ -25,7 +25,7 @@ class Login extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault()
-        const {name, email, password} = this.state
+        const {name,email, password} = this.state
     
         let user = {
         name: name,
@@ -37,7 +37,7 @@ class Login extends Component {
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
             .then(response => {
             if (response.data.logged_in) {
-                user = response.data.user
+                user = response.data.user.data
                 this.setState({
                     isLoggedIn: true,
                     user: response.data.user
@@ -75,6 +75,13 @@ class Login extends Component {
             <div className="App">
                 <h1>Log In</h1>
                 <form onSubmit={this.handleSubmit}>
+                <input
+                    placeholder="name"
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={this.handleChange}
+                />
                 <input
                     placeholder="email"
                     type="text"

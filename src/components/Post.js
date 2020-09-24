@@ -11,6 +11,7 @@ class Post extends Component {
           {post.body}
           <CommentsContainer post={post}/>
         </li>
+        <br></br>
       </div>
     );
   }

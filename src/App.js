@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import './App.css'
+import './App.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 // import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 // import { routerActions } from 'react-router-redux';

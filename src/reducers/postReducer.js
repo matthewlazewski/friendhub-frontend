@@ -24,16 +24,17 @@ const postsReducer = (state = { posts: [], loading: false }, action) => {
         
         case "ADD_POST":
             console.log(action.post)
+        
             const {
                 id, 
                 attributes: {body},
                 relationships: {
                     user: {data: {id: userId}},
-                    // comments: {data: {id: commentId}}
+                    comments: {data: {id: commentId}}
                 }
             } = action.post;
             
-        const post = {id,body,userId}
+        const post = {id,body,userId, commentId}
         return {...state, posts: state.posts.concat(post), loading:false}
 
         case 'DELETE_POST':

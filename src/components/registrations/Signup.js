@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-        username: '',
+        name: '',
         email: '',
         password: '',
-        errors: ''
+        errors: '',
+        isLoggedIn: false
         };
     }
     handleChange = (event) => {
@@ -32,10 +35,11 @@ class Signup extends Component {
         axios.post('http://localhost:3001/api/v1/users', {user}, {withCredentials: true})
         .then(response => {
         if (response.data.status === "created") {
-            user = response.data.user
+            
+            user = response.data.user.data
             this.setState({
                 isLoggedIn: true,
-                user: response.data.user
+                user: response.data.user.data
             })
             this.props.dispatch({type: 'ADD_USER', user })  
             this.redirect() 
@@ -49,6 +53,7 @@ class Signup extends Component {
     };
     
     redirect = () => {
+        debugger
         this.props.history.push('/profile')
     }
     
@@ -71,7 +76,7 @@ class Signup extends Component {
                 <h1>Sign Up</h1>
             <form onSubmit={this.handleSubmit}>
                 <input
-                    placeholder="username"
+                    placeholder="name"
                     type="text"
                     name="name"
                     value={name}
@@ -93,8 +98,8 @@ class Signup extends Component {
                 />
                 <button placeholder="submit" type="submit">
                     Sign Up
-                </button>
-            
+                </button><br></br>
+                already a member? <Link to='/login'>Log In</Link>
                 </form>
                 <div>
                 {

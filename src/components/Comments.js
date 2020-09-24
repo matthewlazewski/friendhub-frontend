@@ -2,7 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux';
 
 
-class Comment extends React.Component {
+class Comments extends React.Component {
     render(){
         return(
             <div>
@@ -12,4 +12,4 @@ class Comment extends React.Component {
     }
 }
 
-export default connect()(Comment)
+export default connect()(Comments)
