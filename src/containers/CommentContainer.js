@@ -15,10 +15,8 @@ class CommentContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return ({
         comments: state.commentReducer.comments,
-        post: state.postReducer.post,
         user: state.userReducer.user
     })
 }

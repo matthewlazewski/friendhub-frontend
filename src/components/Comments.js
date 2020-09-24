@@ -9,13 +9,11 @@ class Comments extends React.Component {
         const { comments } = this.props
         const commentList = comments.map(comment => {
             return( 
-                <Row key={comment.id}>
-                    <Col key={comment.id} > 
-                        <Comment 
-                            key ={comment.id} 
-                            comment={comment} 
-                        />
-                    </Col>
+                <Row key={comment.id}> 
+                    <Comment 
+                        key ={comment.id} 
+                        comment={comment} 
+                    />
                 </Row>
         )})
 

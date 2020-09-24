@@ -8,6 +8,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addUser } from './actions/userActions'
 import { fetchPosts } from './actions/postActions'
+import { fetchComments } from './actions/commentActions'
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
@@ -27,6 +28,7 @@ class App extends Component {
   
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchComments();
     this.loginStatus();
   }
   
@@ -98,7 +100,7 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
-export default connect(mapStateToProps, { addUser, fetchPosts })(App);
+export default connect(mapStateToProps, { addUser, fetchPosts, fetchComments })(App);
 
 // const userIsAuthenticated = connectedRouterRedirect({
 //   redirectPath: '/login',

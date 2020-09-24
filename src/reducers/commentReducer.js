@@ -6,7 +6,8 @@
 
   
       case "ADD_COMMENTS":
-        const comments = action.comments.data.map(comment => {
+        
+        const comments = action.comments.map(comment => {
           return {
             id: comment.id,
             content: comment.attributes.content,
@@ -14,13 +15,11 @@
             postId: comment.relationships.post.data.id 
           };
         });
-  
-        return {...state, data: state.data.concat(comments), pending: false};
+        return {...state, comments: state.comments.concat(comments), pending: false};
   
       case "ADD_COMMENT":
         
         console.log(action.comment)
-        debugger
             const {
                 id, 
                 attributes: {content},

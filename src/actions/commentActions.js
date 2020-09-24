@@ -2,7 +2,7 @@ const fetchComments = () => {
   return (dispatch) => {
     fetch('http://localhost:3001/api/v1/comments')
     .then(res => res.json())
-    .then(json => dispatch({type: 'ADD_COMMENTS', posts: json.data})
+    .then(json => dispatch({type: 'ADD_COMMENTS', comments: json.data})
     )}
 };
   
