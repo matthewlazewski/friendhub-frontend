@@ -7,7 +7,7 @@ import Comment from './Comment'
 class Post extends Component {
 
   render() {
-    const { post,comments, users } = this.props;
+    const { post,comments, users, user} = this.props;
     const commentList = comments.filter(comment => comment.postId === post.id)
     const commentListNames = commentList.map(comment => <Comment key={comment.id} comment={comment}/>)
     
@@ -21,11 +21,14 @@ class Post extends Component {
         });
     }
 
-
+    const postAuthor = author(post.id)
     return (
       <div>
         <Card className="h=100 shadow-sm bg-white rounded">
           <h3>{post.body} - {author(post.id)}</h3>
+          { postAuthor[0] === user.name ?
+              <div><Button>Edit</Button> <Button>Delete</Button></div> : null
+          }
           <p>Comments:</p>
           <ul>
               {commentListNames}
@@ -40,6 +43,7 @@ class Post extends Component {
 
 const mapStateToProps = state => {
     return({
+        user: state.userReducer.user,
         users: state.userReducer.users,
         comments: state.commentReducer.comments
     })

@@ -38,6 +38,10 @@ class PostForm extends React.Component {
             }
             })
             .catch(error => console.log('api errors:', error))  
+
+        this.setState({
+            body: '',
+        })
     
     }
 

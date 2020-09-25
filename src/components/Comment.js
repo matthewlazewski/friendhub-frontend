@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class Comment extends React.Component {
 
     render() {
-      const { users, comment } = this.props;
+      const { users, comment, user } = this.props;
 
       const author = (id) => {
         return users.map(user => {
@@ -16,10 +16,15 @@ class Comment extends React.Component {
             }
         });
     }
+
+        const commentAuthor = author(comment.id)
       return (
         <div>
           <li>
             {comment.content} - {author(comment.id)}
+            { commentAuthor[0] === user.name ?
+              <div><Button>Edit</Button> <Button>Delete</Button></div> : null
+          }
           </li>
           <br></br>
         </div>
@@ -29,7 +34,8 @@ class Comment extends React.Component {
 
   const mapStateToProps = state => { 
     return ({
-        users: state.userReducer.users
+        users: state.userReducer.users,
+        user: state.userReducer.user
     })
   }
   
