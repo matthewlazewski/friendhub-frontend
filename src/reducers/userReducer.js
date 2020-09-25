@@ -1,5 +1,5 @@
 export default function userReducer(state = {
-    user: {},
+    user: {}, users: []
   }, action){
     switch (action.type) {
       case 'ADD_USER':
@@ -29,6 +29,21 @@ export default function userReducer(state = {
         
         return {...state, user: currentUser }
       
+      case 'ADD_USERS':
+        const users = action.users.map(user => {
+            return {
+              id: user.id,
+              name: user.attributes.name,
+              email: user.attributes.email,
+              postIds: user.relationships.posts.data.map(post => post.id),
+              commentIds: user.relationships.comments.data.map(comment => comment.id)
+            }
+        })
+    
+        return {
+        ...state,
+        users: state.users.concat(users)
+        }
       default:
         return state;
     }

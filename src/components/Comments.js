@@ -6,7 +6,9 @@ import { connect } from 'react-redux'
 
 
 class Comments extends React.Component {
+
     render(){
+    
         const comments  = this.props.comments
         const commentList = comments.map(comment => {
             return( 
@@ -22,7 +24,7 @@ class Comments extends React.Component {
             <Container>
                 <div className="App">
                     <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
-                        {commentList}
+                        {commentList} 
                     </ul>
                 </div>
             </Container>

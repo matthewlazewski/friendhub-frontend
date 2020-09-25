@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
+import { Container } from 'react-bootstrap'
 
 
 class PostForm extends React.Component {
@@ -48,16 +49,17 @@ class PostForm extends React.Component {
 
     render(){
         return (
-            <div>
+            <Container>
                 <form className="new-post-form" onSubmit={this.handleSubmit} >
-                    <textarea name="body" rows="2" cols="80"
+                    <textarea name="body" rows="2" 
                         onChange={(e) => this.handleInput(e)}
                         placeholder="What's on your mind?"
                         value = {this.state.body}
                     />
                     <button type="submit" name="">Post</button>
                 </form>
-            </div>
+                <br></br>
+            </Container>
         )
     }
 }

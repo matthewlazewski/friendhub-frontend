@@ -8,13 +8,13 @@ export const addUser = ({user}) => {
 
 export const fetchUsers = () => {
     return (dispatch) => {
-      fetch('/api/v1/users')
-      .then(res => res.json())
-      .then(json => dispatch(addUsers(json)));
-    };
+        fetch('http://localhost:3001/api/v1/users')
+        .then(res => res.json())
+        .then(json => dispatch({type: 'ADD_USERS', users: json.users.data})
+        )}
 };
 
-const addUsers = ({data}) => ({
+export const addUsers = ({data}) => ({
     type: "ADD_USERS",
     users: data,
 });
