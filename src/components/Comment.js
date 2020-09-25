@@ -1,30 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
+import { deleteCommentRequest } from '../actions/commentActions'
 
 
 class Comment extends React.Component {
 
-    render() {
-      const { users, comment, user } = this.props;
-
-      const author = (id) => {
-        return users.map(user => {
-            if(user.commentIds.includes(comment.id)){
-                return user.name
-            } else {
-                return null
-            }
-        });
+    handleDelete = () => {
+        this.props.deleteCommentRequest(this.props.comment)
     }
 
-        const commentAuthor = author(comment.id)
+    render() {
+      const { comment, user } = this.props;
+
       return (
         <div>
           <li>
-            {comment.content} - {author(comment.id)}
-            { commentAuthor[0] === user.name ?
-              <div><Button>Edit</Button> <Button>Delete</Button></div> : null
+            {comment.content} - {comment.author}
+            { comment.author === user.name ?
+              <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
           }
           </li>
           <br></br>
@@ -40,4 +34,4 @@ class Comment extends React.Component {
     })
   }
   
-  export default connect(mapStateToProps)(Comment);
+  export default connect(mapStateToProps, { deleteCommentRequest })(Comment);

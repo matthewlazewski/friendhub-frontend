@@ -26,9 +26,10 @@ class CommentForm extends React.Component {
                 if (response.data) {
                     comment = response.data.comment.data
                     this.setState({
-                        content: response.data.comment.data.attributes.content
+                        content: ''
                     })
-                    this.props.dispatch({type: 'ADD_COMMENT', comment })  
+                    this.props.dispatch({type: 'ADD_COMMENT', comment })
+
                 } else {
                     this.setState({
                     errors: response.data.errors
@@ -36,10 +37,6 @@ class CommentForm extends React.Component {
                 }
             })
             .catch(error => console.log('api errors:', error))  
-        
-        this.setState({
-            content: '',
-        })
     }
 
     handleInput(e) {

@@ -6,5 +6,23 @@ const fetchPosts = () => {
     )}
 };
 
+const deletePostRequest = post => {
+  const requestObj = {
+    'method': 'DELETE',
+    'headers': {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    'body': JSON.stringify(post.id)
+  };
 
-export {fetchPosts};
+  return (dispatch) =>{
+    fetch(`http://localhost:3001/api/v1/posts/${post.id}`, requestObj)
+    .then(res => res.json())
+    .then(response => {
+      dispatch({type: "DELETE_POST", post: post})
+    })};
+}
+
+
+export { fetchPosts, deletePostRequest };

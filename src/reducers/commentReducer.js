@@ -12,7 +12,8 @@
             id: comment.id,
             content: comment.attributes.content,
             userId: comment.relationships.user.data.id,
-            postId: comment.relationships.post.data.id 
+            postId: comment.relationships.post.data.id,
+            author: comment.attributes.author
           };
         });
         return {...state, comments: state.comments.concat(comments), pending: false};
@@ -22,7 +23,7 @@
         console.log(action.comment)
             const {
                 id, 
-                attributes: {content},
+                attributes: {content, author},
                 relationships: {
                     user: {data: {id: userId}},
                     post: {data: {id: postId}}
@@ -30,26 +31,13 @@
                 }
             } = action.comment;
             
-        let comment = {id,content,userId,postId}
+        let comment = {id,content,userId,postId, author}
         return {...state, comments: state.comments.concat(comment), loading:false}
   
       case "DELETE_COMMENT":
-        const toDelete = action.payload.comment_id;
-        const allcomments = state.data.filter( ({id}) => id !== toDelete );
+        const allcomments = state.comments.filter( ({id}) => id !== action.comment.id );
   
         return {...state, comments: allcomments, pending: false};
-  
-      case "PATCH_COMMENT":
-        comment = action.payload.data
-        const patchObj = {
-          id: comment.id,
-          content: comment.attributes.content,
-          userId: comment.relationships.user.data.id,
-          postId: comment.relationships.post.data.id
-        };
-        comments = state.data.map( c =>  c.id !== patchObj.id ? c : patchObj);
-  
-        return {...state, data: comments, pending: false, id: 0};
   
       default:
         return state;

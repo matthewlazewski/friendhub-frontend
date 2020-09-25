@@ -30,7 +30,7 @@ class PostForm extends React.Component {
             if (response.data) {
                 post = response.data.post.data
                 this.setState({
-                    body: response.data.post.data.attributes.body
+                    body: ''
                 })
                 this.props.dispatch({type: 'ADD_POST', post })
                 fetchPosts() 

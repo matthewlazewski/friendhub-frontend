@@ -12,6 +12,7 @@ const postsReducer = (state = { posts: [], loading: false }, action) => {
                     id: post.id,
                     body: post.attributes.body,
                     userId: post.relationships.user.data.id,
+                    author: post.attributes.author,
                     commentIds: post.relationships.comments.data.map(comment => comment.id)
                 }
             })
@@ -27,30 +28,19 @@ const postsReducer = (state = { posts: [], loading: false }, action) => {
         
             const {
                 id, 
-                attributes: {body},
+                attributes: {body, author},
                 relationships: {
                     user: {data: {id: userId}},
                     comments: {data: {id: commentId}}
                 }
             } = action.post;
             
-        const post = {id,body,userId, commentId}
+        const post = {id,body,userId, commentId, author}
         return {...state, posts: state.posts.concat(post), loading:false}
 
         case 'DELETE_POST':
-            const filterPosts = state.posts.filter(post => post.id !== action.id);
+            const filterPosts = state.posts.filter(post => post.id !== action.post.id);
             return {...state, filterPosts}
-
-        case "PATCH_POST":
-            const editPost = action.post
-            const patchObj = {
-                id: editPost.id,
-                content: editPost.attributes.content,
-                userId: editPost.relationships.user.data.id,
-            };
-            const editPosts = state.posts.map( c =>  c.id !== patchObj.id ? c : patchObj);
-        
-            return {...state, posts: editPosts, pending: false, id: 0};
 
         default:
             return state;
