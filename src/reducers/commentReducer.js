@@ -7,7 +7,7 @@
   
       case "ADD_COMMENTS":
         
-        const comments = action.comments.map(comment => {
+        let comments = action.comments.map(comment => {
           return {
             id: comment.id,
             content: comment.attributes.content,
@@ -30,14 +30,14 @@
                 }
             } = action.comment;
             
-        const comment = {id,content,userId,postId}
+        let comment = {id,content,userId,postId}
         return {...state, comments: state.comments.concat(comment), loading:false}
   
       case "DELETE_COMMENT":
         const toDelete = action.payload.comment_id;
-        comments = state.data.filter( ({id}) => id !== toDelete );
+        const allcomments = state.data.filter( ({id}) => id !== toDelete );
   
-        return {...state, comments: comments, pending: false};
+        return {...state, comments: allcomments, pending: false};
   
       case "PATCH_COMMENT":
         comment = action.payload.data

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import CommentsContainer from '../containers/CommentContainer'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Comment from './Comment'
+
 
 class Post extends Component {
 

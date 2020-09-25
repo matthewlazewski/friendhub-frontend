@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
+import { fetchPosts } from '../actions/postActions'
+
 
 
 class PostForm extends React.Component {
@@ -30,7 +32,8 @@ class PostForm extends React.Component {
                 this.setState({
                     body: response.data.post.data.attributes.body
                 })
-                this.props.dispatch({type: 'ADD_POST', post })  
+                this.props.dispatch({type: 'ADD_POST', post })
+                fetchPosts() 
             } else {
                 this.setState({
                 errors: response.data.errors
@@ -42,7 +45,7 @@ class PostForm extends React.Component {
         this.setState({
             body: '',
         })
-    
+
     }
 
     handleInput(e) {
