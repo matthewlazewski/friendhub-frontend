@@ -6,6 +6,7 @@ import Posts from '../components/Posts'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row } from 'react-bootstrap'
 
+
 class UserContainer extends React.Component {
     
     render(){

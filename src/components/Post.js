@@ -9,7 +9,7 @@ import Comment from './Comment'
 class Post extends Component {
 
     handleDelete = () => {
-        this.props.deletePostRequest(this.props.comment)
+        this.props.deletePostRequest(this.props.post)
     }
 
     render() {
@@ -21,7 +21,7 @@ class Post extends Component {
             <Card className="h=100 shadow-sm bg-white rounded">
             <h3>{post.body} - {post.author}</h3>
             { post.author === user.name ?
-                <div><Button>Delete</Button></div> : null
+                <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
             }
             <p>Comments:</p>
             <ul>

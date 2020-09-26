@@ -40,7 +40,7 @@ const postsReducer = (state = { posts: [], loading: false }, action) => {
 
         case 'DELETE_POST':
             const filterPosts = state.posts.filter(post => post.id !== action.post.id);
-            return {...state, filterPosts}
+            return {...state, posts: filterPosts}
 
         default:
             return state;

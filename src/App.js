@@ -14,6 +14,7 @@ import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
 import UserContainer from './containers/UserContainer';
+import NavBar from './components/NavBar'
 
 
 
@@ -39,6 +40,7 @@ class App extends Component {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
+        debugger 
         this.handleLogin(response)
       } else {
         this.handleLogout()
@@ -87,7 +89,10 @@ class App extends Component {
               <Route 
                 path='/profile'
                 render={props => (
-                <UserContainer {...props} />
+                  <div>
+                  <NavBar {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn} />
+                  <UserContainer {...props} />
+                  </div>
                 )}
               /> 
             </Switch>
