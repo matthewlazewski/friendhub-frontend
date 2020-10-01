@@ -3,8 +3,6 @@ import axios from 'axios'
 import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-// import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
-// import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux'
 import { addUser } from './actions/userActions'
 import { fetchPosts } from './actions/postActions'
@@ -109,8 +107,3 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, { addUser, fetchPosts, fetchComments, fetchUsers })(App);
 
-// const userIsAuthenticated = connectedRouterRedirect({
-//   redirectPath: '/login',
-//   authenticatedSelector: state => state.user.data !== null,
-//   wrapperDisplayName: 'UserIsAuthenticated'
-// })
