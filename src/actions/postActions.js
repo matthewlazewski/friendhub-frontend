@@ -1,3 +1,4 @@
+
 const fetchPosts = () => {
   return (dispatch) => {
     fetch('http://localhost:3001/api/v1/posts')
@@ -5,6 +6,25 @@ const fetchPosts = () => {
     .then(json => dispatch({type: 'ADD_POSTS', posts: json.data})
     )}
 };
+
+const addPost = post => {
+  const requestObj = {
+    'method': 'POST',
+    'headers': {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    'body': JSON.stringify(post)
+  };
+  
+  return (dispatch) =>{
+    fetch(`http://localhost:3001/api/v1/posts`, requestObj)
+    .then(res => res.json())
+    .then(response => {
+      dispatch({type: "ADD_POST", post: response.post.data})
+    })};
+}
+
 
 const deletePostRequest = post => {
   const requestObj = {
@@ -25,4 +45,4 @@ const deletePostRequest = post => {
 }
 
 
-export { fetchPosts, deletePostRequest };
+export { fetchPosts, deletePostRequest, addPost };

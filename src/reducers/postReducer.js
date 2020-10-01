@@ -25,7 +25,7 @@ const postsReducer = (state = { posts: [], loading: false }, action) => {
         
         case "ADD_POST":
             console.log(action.post)
-        
+    
             const {
                 id, 
                 attributes: {body, author},

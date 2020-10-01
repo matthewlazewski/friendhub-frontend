@@ -27,7 +27,6 @@ class UserContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return ({
     user: state.userReducer.user,
     posts: state.postReducer.posts,

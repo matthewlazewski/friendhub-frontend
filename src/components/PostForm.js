@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
+import { addPost } from '../actions/postActions'
 import { connect } from 'react-redux'
 import { Container } from 'react-bootstrap'
-import { fetchPosts } from '../actions/postActions'
+
 
 
 
@@ -15,35 +15,16 @@ class PostForm extends React.Component {
         }
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const {body} = this.state
+    handleSubmit = (e) => {
+        e.preventDefault()
     
-        let post = {
+        let post = { 
             user_id: this.props.user.id,
-            body
+            body: this.state.body
         }
-
-        
-        axios.post('http://localhost:3001/api/v1/posts', {post}, {withCredentials: true})
-            .then(response => {
-            if (response.data) {
-                post = response.data.post.data
-                this.setState({
-                    body: ''
-                })
-                this.props.dispatch({type: 'ADD_POST', post })
-                fetchPosts() 
-            } else {
-                this.setState({
-                errors: response.data.errors
-                })
-            }
-            })
-            .catch(error => console.log('api errors:', error))  
-
+        this.props.addPost(post)
         this.setState({
-            body: '',
+            body: ''
         })
 
     }
@@ -77,4 +58,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(PostForm)
+
+
+export default connect(mapStateToProps, { addPost })(PostForm)
