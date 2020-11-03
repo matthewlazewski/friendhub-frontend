@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap'
 
 const styles = makeStyles({
     root: {
-      color: 'blue',
+      color: 'black',
       textAlign: 'center',
     }
 });
@@ -24,7 +24,7 @@ const Home = (props) => {
     return (
         <Container>
             <div className={classes.root}>
-                <h1>FriendHub</h1>
+                <h1><strong>FriendHub</strong></h1>
                 <Link to='/login'>Log In</Link>
                 <br></br>
                 <Link to='/signup'>Sign Up</Link>
