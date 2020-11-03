@@ -4,6 +4,7 @@ import { Button, Card } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { deletePostRequest } from '../actions/postActions'
 import Comment from './Comment'
+import LikeButton from './LikeButton'
 
 
 class Post extends Component {
@@ -20,6 +21,7 @@ class Post extends Component {
         <div>
             <Card className="h=100 shadow-sm bg-white rounded">
             <h3>{post.body} - {post.author}</h3>
+            <LikeButton/>
             { post.author === user.name ?
                 <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
             }
