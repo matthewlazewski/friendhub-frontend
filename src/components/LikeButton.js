@@ -1,26 +1,14 @@
-import React, { Component } from 'react';
-import { Button }  from 'react-bootstrap'
+import React, { useState } from 'react';
+import Heart from "react-animated-heart";
 
-export default class LikeButton extends React.Component {
+const likeButton = () => {
+    const [isClick, setLike] = useState(false);
 
-    state = {
-        likes: 0
-    };
-
-    addLike = () => {
-        let newCount = this.state.likes + 1;
-        this.setState({
-            likes: newCount
-        });
-    }
-
-    render() {
-        return (
-            // Like button for each post
-            <div class = "likeButton">
-                <Button onClick={this.addLike}>Like</Button>
-                <p>Likes: {this.state.likes}</p>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+        </div>
+    )
 }
+
+export default likeButton;
