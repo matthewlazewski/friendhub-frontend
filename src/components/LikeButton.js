@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Heart from "react-animated-heart";
 
-const likeButton = () => {
+const LikeButton = () => {
     const [isClick, setLike] = useState(false);
 
     return (
