@@ -18,10 +18,9 @@ class Post extends Component {
         const commentList = comments.filter(comment => comment.postId === post.id)
         const commentListNames = commentList.map(comment => <Comment key={comment.id} comment={comment}/>)
         return (
-        <div>
-            <Card className="h=100 shadow-sm bg-white rounded">
-            <h3>{post.body} - {post.author}</h3>
-            <LikeButton/>
+        <div className="post">
+            <Card className="h=100 shadow-sm bg-white rounded" >
+            <h3>{post.body} - {post.author} </h3><LikeButton/>
             { post.author === user.name ?
                 <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
             }

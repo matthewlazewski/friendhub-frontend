@@ -17,9 +17,9 @@ class Posts extends React.Component {
                 </Row>)
         })
         return (
-            <Container>
+            <Container className="posts">
                 <div className="App">
-                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
+                    <ul className="posts" style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
                         {postList}
                     </ul>
                 </div>
