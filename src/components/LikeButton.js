@@ -11,4 +11,4 @@ const LikeButton = () => {
     )
 }
 
-export default likeButton;
+export default LikeButton;
