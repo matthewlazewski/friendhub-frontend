@@ -6,7 +6,7 @@ const LikeButton = () => {
 
     return (
         <div>
-            <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+            <Heart isClick={isClick} onClick={() => setLike(!isClick)} />
         </div>
     )
 }
