@@ -25,7 +25,7 @@ const likesReducer = (state = {likes: [], loading: false}, action) => {
                 }
             } = action.comment;
             
-        let comment = {id,userId,postId}
+        let like = {id,userId,postId}
         return {...state, likes: state.likes.concat(like), loading:false}
 
       default:
