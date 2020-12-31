@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class CommentForm extends React.Component {
     constructor(props){
@@ -37,7 +37,7 @@ class CommentForm extends React.Component {
                 }
             })
             .catch(error => console.log('api errors:', error))  
-    }
+    }   
 
     handleInput(e) {
         this.setState({

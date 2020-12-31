@@ -20,15 +20,18 @@ class Post extends Component {
         return (
         <div className="post">
             <Card className="h=100 shadow-sm bg-white rounded" >
-            <h3>{post.body} - {post.author} </h3><LikeButton/>
-            { post.author === user.name ?
-                <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
-            }
-            <p>Comments:</p>
-            <ul>
-                {commentListNames}
-            </ul>
-            <CommentsContainer post={post}/>
+                <h3>{post.body} - {post.author} </h3>
+                
+                <LikeButton post={post} user={user}/>
+                
+                { post.author === user.name ?
+                    <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
+                }
+                <p>Comments:</p>
+                <ul>
+                    {commentListNames}
+                </ul>
+                <CommentsContainer post={post}/>
             </Card>
             <br></br>
         </div>
