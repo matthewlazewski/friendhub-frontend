@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Heart from "react-animated-heart";
 import { axios } from 'axios';
-import { addLike } from '../actions/likeActions';
 import { connect } from 'react-redux';
 
 
-const LikeButton = (props) => {
-    const [isClick, setLike] = useState(false);
-    const { user, post } = props
+class LikeButton extends Component {
 
-    function addLike(e){
+    addLike = () => {
+        console.log(this)
+
+        let liked;
+
+        const { user, post } = this;
 
         let like = {
             user_id: user.id,
@@ -20,7 +22,7 @@ const LikeButton = (props) => {
             .then(response => {
                 if (response.data) {
                     like = response.data.like.data
-                    setLike(true)
+                    liked = true;
                     this.props.dispatch({type: 'ADD_LIKE', like })
 
                 } else {
@@ -30,12 +32,22 @@ const LikeButton = (props) => {
             .catch(error => console.log('api errors:', error))  
     }
 
-
-    return (
-        <div>
-            <Heart isClick={isClick} onClick={(e) => addLike(e)} />
-        </div>
-    )
+    render(){
+        return (
+                <div>
+                    <Heart 
+                        onClick={this.addLike()} 
+                    />
+                </div>
+        )
+    }    
 }
 
-export default connect()(LikeButton);
+const mapStateToProps = (state) => {
+    return({
+      user: state.userReducer.user,
+      post: state.postReducer.post
+    })
+};
+
+export default connect(mapStateToProps)(LikeButton);

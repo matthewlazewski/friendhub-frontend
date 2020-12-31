@@ -14,7 +14,7 @@ class Post extends Component {
     }
 
     render() {
-        const { post,comments, user} = this.props;
+        const { post, comments, user} = this.props;
         const commentList = comments.filter(comment => comment.postId === post.id)
         const commentListNames = commentList.map(comment => <Comment key={comment.id} comment={comment}/>)
         return (
