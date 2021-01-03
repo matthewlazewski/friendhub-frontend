@@ -11,7 +11,7 @@ class LikeButton extends Component {
 
         let liked;
 
-        const { user, post } = this;
+        const { user, post } = props;
 
         let like = {
             user_id: user.id,
