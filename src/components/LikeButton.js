@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class LikeButton extends Component {
 
-    state = { liked: false }
+    state = { liked: false };
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -28,7 +28,10 @@ class LikeButton extends Component {
         return (
                 <div>
                     <form  onSubmit={this.handleSubmit}>
-                        <Heart  />
+                        {this.state.liked === false ? (
+                        <Heart isClick={false} />) : (
+                        <Heart isClick={true} />
+                        )}
                     </form>
                 </div>
         )
