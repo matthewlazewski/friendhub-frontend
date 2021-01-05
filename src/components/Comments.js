@@ -12,7 +12,7 @@ class Comments extends React.Component {
         const comments  = this.props.comments
         const commentList = comments.map(comment => {
             return( 
-                <Row key={comment.id}> 
+                <Row  key={comment.id}> 
                     <Comment 
                         key ={comment.id} 
                         comment={comment} 
@@ -22,9 +22,9 @@ class Comments extends React.Component {
 
         return(
             <Container>
-                <div className="App">
-                    <ul style={{listStyleType: 'none', display: 'flex', flexDirection: 'column'}}>
-                        {commentList} 
+                <div >
+                    <ul>
+                        {commentList}
                     </ul>
                 </div>
             </Container>

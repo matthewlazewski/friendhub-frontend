@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Post from './Post';
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap';
+
 
 class Posts extends React.Component {
 
@@ -9,12 +10,15 @@ class Posts extends React.Component {
         const { posts } = this.props 
         const postList = posts.map(post => {
             return( 
-                <Row key={post.id} >
-                    <Post 
-                key ={post.id} 
-                post={post} 
-                    />
-                </Row>)
+                <li>
+                    <Row key={post.id} >
+                        <Post 
+                    key ={post.id} 
+                    post={post} 
+                        />
+                    </Row>
+                </li>
+            )
         })
         return (
             <Container className="posts">

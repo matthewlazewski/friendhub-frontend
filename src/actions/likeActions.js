@@ -20,8 +20,8 @@ const addLike = like => {
       fetch(`http://localhost:3001/api/v1/likes`, requestObj)
         .then(res => res.json())
         .then(response => {
-        // dispatch({type: "ADD_LIKE", post: response.post.data})
-        console.log(response)
+          dispatch({type: "ADD_LIKE", like: response.like.data})
+          console.log(response)
       });
     }
 }

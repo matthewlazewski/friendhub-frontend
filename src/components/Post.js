@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { deletePostRequest } from '../actions/postActions'
 import Comment from './Comment'
-import LikeButton from './LikeButton'
+import LikeButton from './LikeButton';
 
 
 class Post extends Component {
@@ -14,21 +14,21 @@ class Post extends Component {
     }
 
     render() {
-        const { post, comments, user} = this.props;
+        const { post, comments, user } = this.props;
         const commentList = comments.filter(comment => comment.postId === post.id)
         const commentListNames = commentList.map(comment => <Comment key={comment.id} comment={comment}/>)
         return (
-        <div className="post">
-            <Card className="h=100 shadow-sm bg-white rounded" >
-                <h3>{post.body} - {post.author} </h3>
-                
-                <LikeButton post={post} user={user}/>
-                
+        <div>
+            <Card id="post-card" className="h=100 shadow-sm bg-white rounded">
+                <h3>{post.body}</h3><LikeButton post={post} user={user}/> <br></br> 
+                <div id="like-box">
+                    <h5 style={{marginLeft: 30}}>{post.author}</h5>
+                </div>
                 { post.author === user.name ?
                     <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
                 }
-                <p>Comments:</p>
-                <ul>
+                <p><b>Comments:</b></p>
+                <ul style={{listStyleType: 'none', textAlign: 'left'}}>
                     {commentListNames}
                 </ul>
                 <CommentsContainer post={post}/>

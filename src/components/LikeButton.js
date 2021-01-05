@@ -13,7 +13,7 @@ class LikeButton extends Component {
         console.log(e)
         let like = { 
             user_id: this.props.user.id,
-            body: this.state.body
+            post_id: this.props.post.id
         }
 
         this.setState({
@@ -26,9 +26,7 @@ class LikeButton extends Component {
 
     render(){
         return (
-                <div>
-                    <Heart onClick={this.handleSubmit} />
-                </div>
+                <Heart size="small" onClick={this.handleSubmit} />
         )
     }    
 }
