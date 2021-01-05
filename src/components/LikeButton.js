@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 class LikeButton extends Component {
 
+    state = { liked: false }
+
     handleSubmit = (e) => {
         e.preventDefault()
     
@@ -13,6 +15,10 @@ class LikeButton extends Component {
             user_id: this.props.user.id,
             body: this.state.body
         }
+
+        this.setState({
+            liked: true
+        })
         
         this.props.addLike(like)
 
