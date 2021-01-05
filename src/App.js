@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import './App.scss'
+import axios from 'axios';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import { connect } from 'react-redux'
-import { addUser } from './actions/userActions'
-import { fetchPosts } from './actions/postActions'
-import { fetchComments } from './actions/commentActions'
-import { fetchUsers } from './actions/userActions'
-import Home from './components/Home'
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addUser } from './actions/userActions';
+import { fetchPosts } from './actions/postActions';
+import { fetchComments } from './actions/commentActions';
+import { fetchUsers } from './actions/userActions';
+import { fetchLikes } from './actions/likeActions';
+import Home from './components/Home';
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
 import UserContainer from './containers/UserContainer';
-import NavBar from './components/NavBar'
+import NavBar from './components/NavBar';
 
 
 
@@ -30,6 +31,7 @@ class App extends Component {
     this.props.fetchPosts();
     this.props.fetchComments();
     this.props.fetchUsers();
+    this.props.fetchLikes();
     this.loginStatus();
   }
   
@@ -105,5 +107,5 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
-export default connect(mapStateToProps, { addUser, fetchPosts, fetchComments, fetchUsers })(App);
+export default connect(mapStateToProps, { addUser, fetchPosts, fetchComments, fetchUsers, fetchLikes })(App);
 
