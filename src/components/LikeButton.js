@@ -10,7 +10,7 @@ class LikeButton extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-    
+        console.log(e)
         let like = { 
             user_id: this.props.user.id,
             body: this.state.body
@@ -27,12 +27,7 @@ class LikeButton extends Component {
     render(){
         return (
                 <div>
-                    <form onSubmit={this.handleSubmit}>
-                        {this.state.liked === false ? (
-                            <Heart isClick={false} />) : (
-                            <Heart isClick={true} />
-                        )}
-                    </form>
+                    <Heart onClick={this.handleSubmit} />
                 </div>
         )
     }    
