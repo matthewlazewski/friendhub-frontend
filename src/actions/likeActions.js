@@ -6,8 +6,8 @@ const fetchLikes = () => {
       )}
   };
   
-  const addLike = like => {
-    const requestObj = {
+const addLike = like => {
+  const requestObj = {
       'method': 'POST',
       'headers': {
         'Content-Type': 'application/json',
@@ -21,8 +21,8 @@ const fetchLikes = () => {
         .then(res => res.json())
         .then(response => {
         dispatch({type: "ADD_LIKE", post: response.post.data})
-        });
-        }
+      });
     }
+}
 
 export { fetchLikes, addLike };

@@ -9,23 +9,21 @@ class LikeButton extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
     
-        let post = { 
+        let like = { 
             user_id: this.props.user.id,
             body: this.state.body
         }
-        this.props.addPost(post)
-        this.setState({
-            body: ''
-        })
+        
+        this.props.addLike(like)
 
     }
 
     render(){
         return (
                 <div>
-                    <Heart 
-                        onClick={this} 
-                    />
+                    <form  onSubmit={this.handleSubmit}>
+                        <Heart  />
+                    </form>
                 </div>
         )
     }    
@@ -38,4 +36,4 @@ const mapStateToProps = (state) => {
     })
 };
 
-export default connect(mapStateToProps)(LikeButton);
+export default connect(mapStateToProps, { addLike })(LikeButton);
