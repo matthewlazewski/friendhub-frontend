@@ -29,8 +29,8 @@ class LikeButton extends Component {
                 <div>
                     <form  onSubmit={this.handleSubmit}>
                         {this.state.liked === false ? (
-                        <Heart isClick={false} />) : (
-                        <Heart isClick={true} />
+                            <Heart isClick={false} />) : (
+                            <Heart isClick={true} />
                         )}
                     </form>
                 </div>
