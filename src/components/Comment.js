@@ -14,7 +14,7 @@ class Comment extends React.Component {
       const { comment, user } = this.props;
 
       return (
-        <div>
+        <ol className="comment-list">
           <li>
             {comment.content} - {comment.author}
             { comment.author === user.name ?
@@ -22,7 +22,7 @@ class Comment extends React.Component {
           }
           </li>
           <br></br>
-        </div>
+        </ol>
       );
     }
   };

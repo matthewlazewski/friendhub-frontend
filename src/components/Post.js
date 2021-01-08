@@ -22,11 +22,12 @@ class Post extends Component {
             <Card id="post-card" className="h=100 shadow-sm bg-white rounded">
                 <h3>{post.body}</h3><LikeButton post={post} user={user}/> <br></br> 
                 <div id="like-box">
-                    <h5 style={{marginLeft: 30}}>{post.author}</h5>
+                    <h5 style={{marginLeft: 30, fontSize: 14}}> Author: {post.author}</h5>
                 </div>
                 { post.author === user.name ?
                     <div><Button onClick={() => this.handleDelete()} >Delete</Button></div> : null
                 }
+                <br></br>
                 <p><b>Comments:</b></p>
                 <ul style={{listStyleType: 'none', textAlign: 'left'}}>
                     {commentListNames}

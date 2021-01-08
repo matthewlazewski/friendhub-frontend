@@ -23,9 +23,7 @@ class Comments extends React.Component {
         return(
             <Container>
                 <div >
-                    <ul>
-                        {commentList}
-                    </ul>
+                    {commentList}
                 </div>
             </Container>
         )

@@ -26,7 +26,7 @@ class LikeButton extends Component {
 
     render(){
         return (
-                <Heart size="small" onClick={this.handleSubmit} />
+            <Heart size="small" onClick={this.handleSubmit} /> 
         )
     }    
 }

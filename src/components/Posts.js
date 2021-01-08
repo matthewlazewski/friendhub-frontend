@@ -10,14 +10,12 @@ class Posts extends React.Component {
         const { posts } = this.props 
         const postList = posts.map(post => {
             return( 
-                <li>
                     <Row key={post.id} >
                         <Post 
                     key ={post.id} 
                     post={post} 
                         />
-                    </Row>
-                </li>
+                    </Row>  
             )
         })
         return (
