@@ -20,7 +20,7 @@ class Post extends Component {
         return (
         <div>
             <Card id="post-card" className="h=100 shadow-sm bg-white rounded">
-                <h3>{post.body}</h3><LikeButton post={post} user={user}/> <br></br> 
+                <h3>{post.body}<LikeButton post={post} user={user}/></h3><br></br> 
                 <div id="like-box">
                     <h5 style={{marginLeft: 30, fontSize: 14}}> Author: {post.author}</h5>
                 </div>
